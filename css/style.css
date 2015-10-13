@@ -1,0 +1,50 @@
+h1, h3 {
+    text-align: center;
+}
+#map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+.info-window{
+    color: blue;
+}
+#list{
+    border: 1px solid black;
+    background-color:rgba(255,255,0,0.5);
+    margin: 5%;
+}
+#reset-div, form{
+    margin: 5%;
+}
+ul {
+    list-style: none;
+    margin-top: 5px;
+    padding-left: 0;
+}
+.btn{
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial sans-serif;
+    color: #000000;
+    font-size: 11px;
+    padding: 10px 20px 10px 20px;
+    border: solid #000000 2px;
+    text-decoration: none;
+    margin: 2%;
+}
+.btn:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+.btn:focus{
+    background: green;
+    color: white;
+    outline: 0;
+}

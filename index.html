@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Macao Casino Trip</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div id="container">
+        <div id="map" class="row"></div>
+        <div id="row">
+            <div id="list" class="col-md-1">
+                <h3>Macao Casinos</h3>
+                <ul data-bind="foreach: listed">
+                    <li><button class="btn" data-bind="text: name, click: $root.activateCasino"></button></li>
+                </ul>
+            </div>
+            <form class="col-md-6" data-bind="submit: search" >
+                <input type="text" data-bind="textInput: keyPhrase"/>
+                <input type="submit" />
+            </form>
+
+            <div id="reset-div" class="col-md-1 pull-right"><button class="btn" data-bind="click: init"><h2>Reset</h2></button></div>
+        </div>
+    </div>
+
+
+    <script src="js/lib/knockout-3.3.0.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8EgcnikSZ_kAXgzHIPiNCPRrtEI09eV0&callback=initMap"></script> -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
