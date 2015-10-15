@@ -1,1 +1,4 @@
-s when a map marker, search result, or list view entry is clicked (ex. Yelp reviews, Wikipedia, Flickr images, etc). If you need a refresher on making AJAX requests to third-party servers, check out our Intro to AJAX course.
+1. On page load, all places will show in map.
+2. Search to filter by name of place.
+3. Click on a marker to see info window about that particular place.
+4. Click 'Reset' to view all places again.

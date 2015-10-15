@@ -1,14 +1,18 @@
 var map;
 
+// Create a map object and specify the DOM element for display.
 function initMap() {
-    // Create a map object and specify the DOM element for display.
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 22.18, lng: 113.545},
+        center:      {lat: 22.18, lng: 113.545},
         scrollwheel: false,
-        mapTypeId: google.maps.MapTypeId.SATELLITE,
-        zoom: 14
+        zoom:        14
     });
     map.setTilt(45);
+}
+
+function handleClientLoad() {
+    gapi.client.setApiKey('AIzaSyD9Ag7cAt-71fN77RKqSS6Zq9hgJed8RBA');
+    gapi.client.load('youtube', 'v3');
 }
 
 function Casino (obj){
@@ -18,18 +22,19 @@ function Casino (obj){
     self.address = ko.observable(obj.address);
     self.lat = ko.observable(obj.coords.J);
     self.lng = ko.observable(obj.coords.M);
-    self.description = ko.observable(obj.description);
 
     self.marker = new google.maps.Marker({
         position: {lat: self.lat(), lng: self.lng()},
         animation: google.maps.Animation.DROP,
-        icon: 'images/green_markerC.png'
+        icon: 'images/greenMarker.png'
     });
     self.infoWindow = new google.maps.InfoWindow({
-        content: '<div class="info-window">' + '<h5>' + self.name() + '</h5>' + self.description() + '</div>',
+        content: '<div class="info-window">' + '<h5>' + self.name() + '</h5>' + '</div>',
         maxWidth: 200
     });
 }
+
+
 
 var ViewModel = function(){
     var self = this;
@@ -38,8 +43,15 @@ var ViewModel = function(){
     self.listed = ko.observableArray([]);
     self.highlighted = ko.observableArray([]);
     self.previousInfoWindow = ko.observable();
+    self.ytOpen = ko.observable('https://www.youtube.com/v/');
+    self.ytVideoID = ko.observable('lkwVDitqTmk');
+    self.ytClose = ko.observable('?autoplay=1');
+    self.youtubeLink = ko.computed(function() {
+        return (self.ytOpen() + self.ytVideoID() + self.ytClose());
+    });
 
     init();
+    console.log(self.youtubeLink());
 
     self.init = function(){
         init();
@@ -49,8 +61,9 @@ var ViewModel = function(){
         activateCasino(casino);
     };
 
+    // Check if the first 3 characters of the user's search phrase matches any 3 characters in one of our casinos.
     self.search = function () {
-        self.keyPhrase(self.keyPhrase().toUpperCase().substring(0, 3)); // Only looks at first 3 characters so that we don't have to find exact match.
+        self.keyPhrase(self.keyPhrase().toUpperCase().substring(0, 3));
         var matches = [];
         self.allCasinos().forEach(function(c) {
            if (c.name().toUpperCase().indexOf(self.keyPhrase()) !== -1) {
@@ -85,7 +98,10 @@ var ViewModel = function(){
         setMarkers(self.listed);
     }
 
+    // An activated casino's marker bounces, turn's red and opens its window.
     function activateCasino(casino){
+        videoRequest(casino.name() + 'macao');
+
         self.highlighted.removeAll();
         self.highlighted.push(casino);
         setHighlightedIcons(self.highlighted);
@@ -98,16 +114,14 @@ var ViewModel = function(){
         setTimeout(function(){ casino.marker.setAnimation(null); }, 750);
         casino.infoWindow.open(map, casino.marker);
         self.previousInfoWindow(casino.infoWindow);
-        map.panTo(casino.marker.getPosition());
-        map.setZoom(16);
     }
 
     function setHighlightedIcons (casinos) {
         self.allCasinos().forEach(function(c) {
-            c.marker.icon = 'images/green_markerC.png';
+            c.marker.icon = 'images/greenMarker.png';
         });
         casinos().forEach(function(c) {
-            c.marker.icon = 'images/red_markerC.png';
+            c.marker.icon = 'images/redMarker.png';
         });
     }
 
@@ -121,6 +135,30 @@ var ViewModel = function(){
         casinos().forEach(function(c) {
             c.marker.setMap(null);
         });
+    }
+
+    function videoRequest(keyphrase) {
+        var request = gapi.client.youtube.search.list({
+                            part: 'snippet',
+                            q: keyphrase,
+                            type: 'video',
+                            videoEmbeddable: true,
+                            maxResults: 3
+                        });
+        request.execute(getVideo);
+    }
+
+    // Only creating this function cause can't seem to retrieve data unless I call execute on request and pass a function..
+    // Response is parameter but we do not actually pass it. I guess it takes the value of request somehow.
+    function getVideo(response) {
+        var numVids = response.items.length;
+        if (numVids === 0) {
+            self.ytVideoID('8AAKbvLIbVw');
+            return;
+        }
+        var randVid = Math.floor(Math.random() * numVids); // So that we don't show the same video every time.
+        var videoId = response.items[randVid].id.videoId;
+        self.ytVideoID(videoId);
     }
 };
 
