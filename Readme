@@ -1,4 +1,4 @@
 1. On page load, all places will show in map.
 2. Search to filter by name of place.
-3. Click on a marker to see info window about that particular place.
-4. Click 'Reset' to view all places again.
+3. To activate a place, either click on marker or button in list.
+4. Once a place is activated, a corresponding video will play.

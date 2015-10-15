@@ -15,7 +15,7 @@ h1, h3 {
     margin: 5%;
 }
 #reset-div, form{
-    margin: 5%;
+    margin-top: 5%;
 }
 ul {
     list-style: none;
@@ -50,5 +50,5 @@ ul {
 }
 #player {
     float: right;
-    margin: 5%;
+    margin-top: 5%;
 }

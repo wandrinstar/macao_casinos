@@ -3,9 +3,8 @@ var map;
 // Create a map object and specify the DOM element for display.
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center:      {lat: 22.18, lng: 113.545},
-        scrollwheel: false,
-        zoom:        14
+        center: {lat: 22.18, lng: 113.545},
+        zoom: 14
     });
     map.setTilt(45);
 }
@@ -51,7 +50,6 @@ var ViewModel = function(){
     });
 
     init();
-    console.log(self.youtubeLink());
 
     self.init = function(){
         init();
