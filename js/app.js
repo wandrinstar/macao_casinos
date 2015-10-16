@@ -5,7 +5,7 @@ function initMap() {
     try {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 22.18, lng: 113.545},
-            zoom: 13
+            zoom: 14
         });
     } catch (e) {
         if (e instanceof TypeError)
@@ -150,7 +150,7 @@ var ViewModel = function(){
         request.execute(getVideo);
     }
 
-    // Only creating this function cause can't seem to retrieve data unless I call execute on request and pass a function..
+    // Only creating this function cause can't seem to retrieve data unless I call execute on request and pass a function.
     // Response is parameter but we do not actually pass it. I guess it takes the value of request somehow.
     function getVideo(response) {
         var numVids = response.items.length;
