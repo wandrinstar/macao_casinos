@@ -10,8 +10,8 @@
 <body>
     <div id="container">
         <div id="map" class="row"></div>
-        <div class="row">
-            <div id="list" class="visible-lg visible-md col-md-2">
+        <div class="row main">
+            <div id="list" class="visible-lg visible-md col-md-1">
                 <h3>Macao Casinos</h3>
                 <div><button class="btn" data-bind="click: init"><h4>Show All</h4></button></div>
 
@@ -19,14 +19,14 @@
                     <li><button class="btn" data-bind="text: name, click: $root.activateCasino"></button></li>
                 </ul>
             </div>
-            <form class="col-md-2" data-bind="submit: search">
-                <input type="text" data-bind="textInput: keyPhrase"/>
-                <input type="submit" value="search"/>
-            </form>
             <div class="col-md-4 visible-lg visible-md " id="player">
                 <iframe data-bind="attr: {src: youtubeLink}" width="560" height="315" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
+        <form class="col-md-2 navbar-fixed-bottom" data-bind="submit: search">
+            <input id="search-field" type="text" data-bind="textInput: keyPhrase"/>
+            <input type="submit" value="Search"/>
+        </form>
     </div>
 
     <script src="js/lib/knockout-3.3.0.js"></script>

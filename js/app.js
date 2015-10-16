@@ -2,11 +2,17 @@ var map;
 
 // Create a map object and specify the DOM element for display.
 function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 22.18, lng: 113.545},
-        zoom: 14
-    });
-    map.setTilt(45);
+    try {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 22.18, lng: 113.545},
+            zoom: 13
+        });
+    } catch (e) {
+        if (e instanceof TypeError)
+            alert('Sorry, the map cannot load.');
+        else
+            alert(e);
+    }
 }
 
 function handleClientLoad() {
@@ -32,8 +38,6 @@ function Casino (obj){
         maxWidth: 200
     });
 }
-
-
 
 var ViewModel = function(){
     var self = this;
@@ -92,7 +96,6 @@ var ViewModel = function(){
         // Set current markers to all casinos at start.
 
         self.listed(self.allCasinos());
-        initMap();
         setMarkers(self.listed);
     }
 
@@ -112,6 +115,7 @@ var ViewModel = function(){
         setTimeout(function(){ casino.marker.setAnimation(null); }, 750);
         casino.infoWindow.open(map, casino.marker);
         self.previousInfoWindow(casino.infoWindow);
+        map.panTo(new google.maps.LatLng(casino.lat(), casino.lng()));
     }
 
     function setHighlightedIcons (casinos) {
@@ -160,5 +164,6 @@ var ViewModel = function(){
     }
 };
 
+initMap();
 ko.applyBindings(new ViewModel());
 
