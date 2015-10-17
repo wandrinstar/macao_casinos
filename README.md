@@ -1,4 +1,5 @@
-Technologies:
+Technologies
+
 *Knockout JS - MVVM design pattern.
 
 *Bootstrap - not great since it doesn't solve responsive design, i.e. video doesn't resize, elements overlap, etc.
