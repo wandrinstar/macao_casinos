@@ -139,7 +139,7 @@ var ViewModel = function(){
                             type: 'video',
                             videoEmbeddable: true,
                             maxResults: 3
-                        });
+        });
         request.execute(getVideo);
     }
 
