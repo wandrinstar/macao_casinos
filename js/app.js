@@ -32,7 +32,6 @@ function Casino (obj){
         animation: google.maps.Animation.DROP,
         icon: 'images/greenMarker.png'
     });
-
     self.infoWindow = new google.maps.InfoWindow({
         content: '<div class="info-window">' + '<h5>' + self.name() + '</h5>' + '</div>',
         maxWidth: 200
@@ -52,13 +51,11 @@ var ViewModel = function(){
     self.youtubeLink = ko.computed(function() {
         return (self.ytOpen() + self.ytVideoID() + self.ytClose());
     });
-
     init();
 
     self.init = function(){
         init();
     };
-
     self.activateCasino = function(casino){
         activateCasino(casino);
     };
@@ -80,19 +77,16 @@ var ViewModel = function(){
     function init() {
         // When we reset the map, we don't want duplicates.
         self.allCasinos.removeAll();
-
         // Create casinos from data.
         casinoData.forEach(function(obj) {
             self.allCasinos.push(new Casino(obj));
         });
-
         // Adds event listener for each marker. Couldn't figure out how to data-bind the marker.
         self.allCasinos().forEach(function(c){
             c.marker.addListener('click', function() {
                 activateCasino(c);
             });
         });
-
         // Set current markers to all casinos at start.
         self.listed(self.allCasinos());
         setMarkers(self.listed);

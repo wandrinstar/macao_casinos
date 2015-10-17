@@ -2,8 +2,7 @@
 {
     name: '',
     address: '',
-    coords: null,
-    description:
+    coords: null:
 },
 */
 
@@ -60,7 +59,7 @@ var casinoData = [
     }
 ];
 /*
-// Gets coordinates for objects which don't yet have them.
+// Logs coordinates for objects which don't yet have them so that I can paste them into object.
 var geocoder = new google.maps.Geocoder();
 casinoData.forEach(function(casino) {
     if (! casino.coords) {
