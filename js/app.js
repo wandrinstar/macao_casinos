@@ -94,12 +94,11 @@ var ViewModel = function(){
         });
 
         // Set current markers to all casinos at start.
-
         self.listed(self.allCasinos());
         setMarkers(self.listed);
     }
 
-    // An activated casino's marker bounces, turn's red and opens its window.
+    // When a casino is activated, its marker bounces and turns red and its info window is opened.
     function activateCasino(casino){
         videoRequest(casino.name() + 'macao');
 
