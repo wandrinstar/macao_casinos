@@ -1,4 +1,4 @@
-h1, h3 {
+h3 {
     text-align: center;
 }
 #map {
@@ -6,23 +6,19 @@ h1, h3 {
     width: 100%;
     position: absolute;
 }
-.info-window{
-    color: blue;
-}
 #list{
     border: 1px solid black;
     background-color:rgba(255,255,0,0.5);
-    margin: 5%;
+    margin: 2%;
+    float: right;
 }
-form {
+#player {
+    margin: 2%;
+}
+#search-box {
     font-size: 20px;
     color: green;
     font-weight: bold;
-}
-#search-field {
-    width: 100%;
-    height: 100%;
-    border: 1px solid;
 }
 ul {
     list-style: none;
@@ -56,8 +52,4 @@ ul {
     background: green;
     color: white;
     outline: 0;
-}
-#player {
-    float: right;
-    margin: 5%;
 }

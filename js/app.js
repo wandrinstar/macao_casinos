@@ -8,11 +8,10 @@ function initMap() {
             zoom: 14
         });
     } catch (e) {
-        if (e instanceof TypeError)
-            alert('Sorry, the map cannot load.');
-        else
-            alert(e);
+        alert('Sorry, the map cannot load.');
+        console.log(e);
     }
+    ko.applyBindings(new ViewModel());
 }
 
 function handleClientLoad() {
@@ -33,6 +32,7 @@ function Casino (obj){
         animation: google.maps.Animation.DROP,
         icon: 'images/greenMarker.png'
     });
+
     self.infoWindow = new google.maps.InfoWindow({
         content: '<div class="info-window">' + '<h5>' + self.name() + '</h5>' + '</div>',
         maxWidth: 200
@@ -163,7 +163,3 @@ var ViewModel = function(){
         self.ytVideoID(videoId);
     }
 };
-
-initMap();
-ko.applyBindings(new ViewModel());
-

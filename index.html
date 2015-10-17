@@ -20,17 +20,19 @@
                 </ul>
             </div>
             <div class="col-md-4 visible-lg visible-md " id="player">
-                <iframe data-bind="attr: {src: youtubeLink}" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                <iframe data-bind="attr: {src: youtubeLink}" width="450" height="300" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
-        <form class="col-md-2 navbar-fixed-bottom" data-bind="submit: search">
-            <input id="search-field" type="text" data-bind="textInput: keyPhrase"/>
-            <input type="submit" value="Search"/>
-        </form>
+        <div class="row navbar-fixed-bottom" id="search-box">
+            <form class="col-md-2" data-bind="submit: search">
+                <input type="text" data-bind="textInput: keyPhrase"/>
+                <input type="submit" value="Search 3 Letters"/>
+            </form>
+        </div>
     </div>
 
     <script src="js/lib/knockout-3.3.0.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script async defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Ag7cAt-71fN77RKqSS6Zq9hgJed8RBA&callback=initMap"></script>
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
