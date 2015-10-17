@@ -11,6 +11,9 @@
     <div id="container">
         <div id="map" class="row"></div>
         <div class="row main">
+            <div class="col-md-4 visible-lg visible-md " id="player">
+                <iframe data-bind="attr: {src: youtubeLink}" width="450" height="300" frameborder="0" allowfullscreen></iframe>
+            </div>
             <div id="list" class="visible-lg visible-md col-md-1">
                 <h3>Macao Casinos</h3>
                 <div><button class="btn" data-bind="click: init"><h4>Show All</h4></button></div>
@@ -18,9 +21,6 @@
                 <ul data-bind="foreach: listed">
                     <li><button class="btn" data-bind="text: name, click: $root.activateCasino"></button></li>
                 </ul>
-            </div>
-            <div class="col-md-4 visible-lg visible-md " id="player">
-                <iframe data-bind="attr: {src: youtubeLink}" width="450" height="300" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
         <div class="row navbar-fixed-bottom" id="search-box">
